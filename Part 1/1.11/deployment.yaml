@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pingpong-writer-reader
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pingpong-writer-reader
+  template:
+    metadata:
+      labels:
+        app: pingpong-writer-reader
+    spec:
+      volumes:
+        - name: shared-file-pingpong
+          persistentVolumeClaim:
+            claimName: pingpong-claim
+      containers:
+        - name: pingpong-reader
+          image: jc40/pingpong-reader:1.1.2
+          volumeMounts:
+            - name: shared-file-pingpong
+              mountPath: /usr/src/app/files
+        - name: pingpong-writer
+          image: jc40/pingpong-writer:1.1.2
+          volumeMounts:
+            - name: shared-file-pingpong
+              mountPath: /usr/src/app/files

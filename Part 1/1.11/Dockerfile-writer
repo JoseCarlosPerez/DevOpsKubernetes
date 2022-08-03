@@ -1,0 +1,10 @@
+FROM node:alpine
+
+COPY ./ping-pong .
+
+ENV FILE=/usr/src/app/files/file.txt
+
+RUN npm ci
+
+CMD npm start
+

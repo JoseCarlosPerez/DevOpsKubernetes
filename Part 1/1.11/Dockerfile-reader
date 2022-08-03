@@ -1,0 +1,11 @@
+FROM node:alpine
+
+COPY ./logoutput .
+
+ENV PORT=4000
+
+ENV FILE=/usr/src/app/files/file.txt
+
+RUN npm ci
+
+CMD npm start

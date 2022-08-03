@@ -1,0 +1,1 @@
+kubectl port-forward projectxx-5cb95b5948-qcjnp 3000:3000

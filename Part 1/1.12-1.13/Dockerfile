@@ -1,0 +1,11 @@
+FROM node:alpine
+
+COPY ./projectxx .
+
+RUN npm ci && npm run build
+
+ENV IMAGE_DIRECTORY=/usr/src/app/image
+
+EXPOSE 3000
+
+CMD [ "npm", "start" ]

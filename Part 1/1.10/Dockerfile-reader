@@ -1,0 +1,9 @@
+FROM node:alpine
+
+COPY ./logoutput .
+
+ENV FILE=/files/file.txt
+
+RUN npm ci
+
+CMD npm start

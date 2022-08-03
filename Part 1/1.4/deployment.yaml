@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: projectxx
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: projectxx
+  template:
+    metadata:
+      labels:
+        app: projectxx
+    spec:
+      containers:
+        - name: projectxx
+          image: jc40/projectxx:1.0.0

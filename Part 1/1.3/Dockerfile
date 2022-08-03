@@ -1,0 +1,5 @@
+FROM node:alpine
+
+COPY ./logoutput.js .
+
+CMD node logoutput.js
