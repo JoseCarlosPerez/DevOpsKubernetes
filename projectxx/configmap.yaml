@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pojectxx-configmap
+  namespace: projectxx
+data:
+  BDPASSWORD: 'example'
+  BDUSER: 'postgres'
+  BD: 'postgres'
+  SERVICEROUTE: 'postgres-svc.projectxx.svc.cluster.local'
+  PORT: '5000'

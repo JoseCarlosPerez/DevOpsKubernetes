@@ -1,0 +1,11 @@
+FROM node:alpine
+
+COPY ./logoutput .
+
+ENV PORT=4000
+
+ENV PINGPONGPORT=3000
+
+RUN npm ci
+
+CMD npm start

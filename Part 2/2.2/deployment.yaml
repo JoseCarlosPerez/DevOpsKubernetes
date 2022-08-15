@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: projectxx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: projectxx
+  template:
+    metadata:
+      labels:
+        app: projectxx
+    spec:
+      volumes:
+        - name: shared-file-projectxx
+          persistentVolumeClaim:
+            claimName: projectxx-claim
+      containers:
+        - name: projectxx
+          image: jc40/projectxx:4.0.0
+          volumeMounts:
+            - name: shared-file-projectxx
+              mountPath: /usr/src/app/image
+        - name: todo
+          image: jc40/todo:1.0.1

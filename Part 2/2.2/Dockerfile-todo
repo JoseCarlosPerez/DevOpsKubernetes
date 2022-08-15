@@ -1,0 +1,9 @@
+FROM node:alpine
+
+COPY ./todo .
+
+RUN npm ci
+
+ENV PORT=5000
+
+CMD [ "npm", "start" ]

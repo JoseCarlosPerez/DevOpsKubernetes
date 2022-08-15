@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pingpong-writer-reader
+  namespace: pingpong-writer-reader
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pingpong-writer-reader
+  template:
+    metadata:
+      labels:
+        app: pingpong-writer-reader
+    spec:
+      containers:
+        - name: pingpong-reader
+          image: jc40/pingpong-reader:3.1.1
+          env:
+            - name: PINGPONGPORT 
+              valueFrom:
+                configMapKeyRef:
+                  name: pingpong-configmap
+                  key: PINGPONGPORT
+            - name: PORT 
+              valueFrom:
+                configMapKeyRef:
+                  name: pingpong-configmap
+                  key: PORT
+            - name: MESSAGE 
+              valueFrom:
+                configMapKeyRef:
+                  name: pingpong-configmap
+                  key: MESSAGE
+        - name: pingpong-writer
+          image: jc40/pingpong-writer:2.0.0

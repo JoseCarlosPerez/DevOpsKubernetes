@@ -1,0 +1,5 @@
+FROM node:alpine
+
+COPY ./todoJob .
+
+RUN npm ci

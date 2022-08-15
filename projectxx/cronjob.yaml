@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: todo-job
+  namespace: projectxx
+spec:
+  schedule: "0 0 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: todo-job
+            image: jc40/todojob:1.0.3
+            imagePullPolicy: IfNotPresent
+            command:
+            - npm
+            - start
+          restartPolicy: OnFailure
