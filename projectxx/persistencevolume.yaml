@@ -4,7 +4,7 @@ metadata:
   name: projectxx-volume
   namespace: projectxx
 spec:
-  storageClassName: manual
+  storageClassName: standard
   capacity:
     storage: 1Gi
   volumeMode: Filesystem 

@@ -3,8 +3,13 @@ kind: Service
 metadata:
   name: projectxx-svc
   namespace: projectxx
+  annotations:
+    cloud.google.com/backend-config: '{"ports": {
+    "projectxx":"http-hc-config-projectxx",
+    "todo":"http-hc-config-todo"
+    }}'
 spec:
-  type: ClusterIP
+  type: NodePort
   selector:
     app: projectxx
   ports:

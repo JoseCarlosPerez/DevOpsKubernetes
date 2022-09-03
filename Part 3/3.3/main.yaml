@@ -1,0 +1,59 @@
+name: Release application
+
+on:
+  push:
+
+env:
+  PROJECT_ID: ${{ secrets.GKE_PROJECT }}
+  GKE_CLUSTER: dwk-gke-projectxxx
+  GKE_ZONE: europe-north1-b
+  PROJECTXX_IMAGE: projectxx
+  TODO_IMAGE: todo
+
+jobs:
+  build-todo-app:
+    name: Build ProjectXX App
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Gcloud
+        uses: google-github-actions/setup-gcloud@v0
+        with:
+          project_id: ${{ secrets.GKE_PROJECT }}
+          service_account_key: ${{ secrets.GKE_SA_KEY }}
+          export_default_credentials: true
+
+      - name: Configure docker
+        run: gcloud --quiet auth configure-docker
+
+      - name: Assing cluster
+        run: gcloud container clusters get-credentials "$GKE_CLUSTER" --zone "$GKE_ZONE"
+
+      - name: Build ProjectXX Image
+        run: docker build --tag "gcr.io/$PROJECT_ID/$PROJECTXX_IMAGE:${GITHUB_REF#refs/heads/}-$GITHUB_SHA" ./projectxx
+      
+      - name: Build Todo Image
+        run: docker build --tag "gcr.io/$PROJECT_ID/$TODO_IMAGE:${GITHUB_REF#refs/heads/}-$GITHUB_SHA" ./todo
+
+      - name: Publish ProjectXX Image
+        run: docker push "gcr.io/$PROJECT_ID/$PROJECTXX_IMAGE:${GITHUB_REF#refs/heads/}-$GITHUB_SHA"
+
+      - name: Publish Todo Image
+        run: docker push "gcr.io/$PROJECT_ID/$TODO_IMAGE:${GITHUB_REF#refs/heads/}-$GITHUB_SHA"
+
+      - name: Set up Kustomize
+        uses: imranismail/setup-kustomize@v1
+
+      - name: Deploy
+        run: |-
+          kubectl create namespace projectxx
+          kubectl config set-context --current --namespace=projectxx
+          kustomize edit set image gcr.io/PROJECTXX/IMAGE=gcr.io/$PROJECT_ID/$PROJECTXX_IMAGE:${GITHUB_REF#refs/heads/}-$GITHUB_SHA
+          kustomize edit set image gcr.io/TODO/IMAGE=gcr.io/$PROJECT_ID/$TODO_IMAGE:${GITHUB_REF#refs/heads/}-$GITHUB_SHA
+          kustomize build . | kubectl apply -f -
+          kubectl rollout status deployment $PROJECTXX_IMAGE-dep
+          kubectl rollout status deployment $TODO_IMAGE-dep
+          kubectl get services -o wide

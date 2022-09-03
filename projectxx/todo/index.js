@@ -7,6 +7,10 @@ const PORT = process.env.PORT;
 
 app.use(express.json());
 
+app.get('/healthz', (_, response) => {
+  response.status(200).send(true);
+});
+
 app.get('/todos', async (_, response) => {
   const todos = await Todo.findAll();
 

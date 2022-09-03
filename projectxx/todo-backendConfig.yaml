@@ -1,0 +1,11 @@
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: http-hc-config-todo
+  namespace: projectxx
+spec:
+  healthCheck:
+    checkIntervalSec: 15
+    port: 5000
+    type: HTTP
+    requestPath: /healthz

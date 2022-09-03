@@ -19,12 +19,12 @@ spec:
             claimName: projectxx-claim
       containers:
         - name: projectxx
-          image: jc40/projectxx:4.0.0
+          image: PROJECTXX/IMAGE
           volumeMounts:
             - name: shared-file-projectxx
               mountPath: /usr/src/app/image
         - name: todo
-          image: jc40/todo:2.1.0
+          image: TODO/IMAGE
           env:
             - name: BDPASSWORD 
               valueFrom:
