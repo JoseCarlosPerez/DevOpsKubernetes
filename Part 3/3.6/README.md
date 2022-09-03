@@ -17,7 +17,7 @@
 - You don’t have direct access to the servers that are running your database
 - If, for whatever reason, their system goes down, you don’t have access to your database
 
-#DIY
+# DIY
 
 ## Pros
 
