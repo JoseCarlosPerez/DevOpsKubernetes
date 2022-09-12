@@ -30,7 +30,7 @@ spec:
             - name: shared-file-projectxx
               mountPath: /usr/src/app/image
         - name: todo
-          image: jc40/todo:4.2.2
+          image: jc40/todo:4.1.4
           livenessProbe:
             initialDelaySeconds: 10
             periodSeconds: 5

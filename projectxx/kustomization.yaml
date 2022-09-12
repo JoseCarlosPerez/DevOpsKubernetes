@@ -12,6 +12,6 @@ resources:
   - ingress.yaml
 images:
   - name: PROJECTXX/IMAGE
-    newName: jc40/projectxx:5.0.1
+    newName: jc40/projectxx:6.0.0
   - name: TODO/IMAGE
-    newName: jc40/todo:3.0.0
+    newName: jc40/todo:4.0.0

@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: broadcaster
+  namespace: projectxx
+spec:
+  replicas: 6
+  selector:
+    matchLabels:
+      app: broadcaster
+  template:
+    metadata:
+      labels:
+        app: broadcaster
+    spec:
+      containers:
+        - name: broadcaster
+          image: jc40/broadcaster:1.0.0
+          env:
+            - name: NATS_URL
+              value: nats://my-nats:4222
+            - name: DISCORD_URL
+              value: https://discord.com/api/webhooks/1012335028254036099/JS8N_3lG6iGPLRORpz1mcOfJX5DzPJ5JrUJduyLm2_nOCOwmP8qcBakK6YtfDm3DQLD-

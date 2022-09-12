@@ -1,26 +1,22 @@
 const { sequelize } = require('../db');
 const { DataTypes, Model } = require('sequelize');
 
-class Todo extends Model {}
-Todo.init({
+class Pong extends Model {}
+Pong.init({
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true
   },
-  text: {
+  pong: {
     type: DataTypes.TEXT,
     allowNull: false
-  },
-  done: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: false
   }
 }, {
     sequelize,
     underscored: true,
     timestamps: true,
-    modelName: 'todo'
+    modelName: 'blog'
 });
 
-module.exports = Todo;
+module.exports = Pong;

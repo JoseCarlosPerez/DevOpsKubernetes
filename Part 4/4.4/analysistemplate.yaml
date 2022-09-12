@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AnalysisTemplate
+metadata:
+  name: restart-rate-projectxx
+  namespace: projectxx
+spec:
+  metrics:
+  - name: restart-rate-projectxx
+    initialDelay: 4m
+    successCondition: result < 2
+    provider:
+      prometheus:
+        address: http://kube-prometheus-stack-1660-prometheus.prometheus.svc.cluster.local:9090
+        query: |
+          scalar(
+            sum(rate(container_cpu_usage_seconds_total{namespace="projectxx"})) / sum(machine_cpu_core) * 100
+          )

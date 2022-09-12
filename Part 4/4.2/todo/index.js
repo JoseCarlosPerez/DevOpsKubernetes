@@ -37,30 +37,6 @@ app.post('/todos', async (request, response) => {
   }
 });
 
-app.put('/todos/:id', async (request, response) => {
-  console.log('enter');
-  const id = request.params.id;
-  console.log(id);
-  const todo = new Todo({
-    done: true
-  });
-
-  const result = await Todo.update({
-    done: true
-  },
-  {
-    where: { id }
-  });
-
-  if (result) {
-    response.status(200).json(result);
-  } else {
-    response.status(404).json({
-      error: 'Todo does not exist'
-    });
-  }
-});
-
 const start = async () => {
   await connectToDatabase();
 

@@ -19,7 +19,7 @@ spec:
             claimName: projectxx-claim
       containers:
         - name: projectxx
-          image: jc40/projectxx:6.1.3
+          image: jc40/projectxx:6.0.2
           livenessProbe:
             initialDelaySeconds: 10
             periodSeconds: 5
@@ -30,7 +30,7 @@ spec:
             - name: shared-file-projectxx
               mountPath: /usr/src/app/image
         - name: todo
-          image: jc40/todo:4.2.2
+          image: jc40/todo:4.0.0
           livenessProbe:
             initialDelaySeconds: 10
             periodSeconds: 5
