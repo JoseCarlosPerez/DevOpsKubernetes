@@ -1,0 +1,8 @@
+Comparision
+
+Rancher is more easy to install and upgrade than OpenShift.
+OpenShift provides a lot of add-ons to do extra features, without you have to install nothing, Rancher has a lot too, but you have to install them.
+
+Conclusion
+
+Both Rancher and OpenShift are a good option, but if you have a Read Hat infrastructure, use OpenShift, if you aren't and you want to manage multiple clusters use Rancher.

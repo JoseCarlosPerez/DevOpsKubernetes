@@ -1,0 +1,7 @@
+apiVersion: stable.dwk/v1
+kind: DummySite
+metadata:
+  name: doomsday-2
+spec:
+  website_url: https://example.com/
+  image: jc40/dummysite-job:0.0.0

@@ -1,0 +1,19 @@
+cri-o: Outside of the course.
+fannel: Dependency of k3d.
+Prometheus: To monitoring the logs.
+Google stackdriver: Outside of the course.
+Grafana: To monitoring the logs.
+Grafana loki: To monitoring the logs.
+elastic: Outside of the course.
+LOGIQ: Outside of the course.
+Pandora: Outside of the course.
+Grafana tempo: Outside of the course.
+Helm: To install Prometheus.
+Oracla database: Outside of the course.
+SQl Server: Outside of the course.
+MongoDB: In FullStack Open course.
+MySQL: Outside of the course.
+PostgreSQL: To save data in this course.
+cassandra: Outside of the course.
+GitHub Actions: To make deployments in this course.
+GitLab: Outside of the course.

@@ -1,0 +1,15 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: knative-service
+  namespace: pingpong-writer-reader
+spec:
+  template:
+    spec:
+      containers:
+      - image: jc40/pingpong-reader:5.0.0
+        ports:
+          - containerPort: 8080
+      - image: jc40/pingpong-writer:5.0.0
+        ports:
+          - containerPort: 3000
